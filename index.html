@@ -91,21 +91,18 @@
     </footer>
 
     <script>
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", user => {
-          if (!user) {
-            window.netlifyIdentity.on("login", () => { document.location.href = "/admin/"; });
-          }
-        });
-      }
-    </script> <script>
   if (window.netlifyIdentity) {
+    // 1. Quand le composant se charge
     window.netlifyIdentity.on("init", user => {
-      if (!user) {
-        window.netlifyIdentity.on("login", () => {
-          document.location.href = "/admin/";
-        });
+      if (user) {
+        // Si l'utilisateur est déjà connecté, on l'envoie sur l'admin
+        document.location.href = "/admin/";
       }
+    });
+    
+    // 2. Quand l'utilisateur clique sur Connexion et réussit
+    window.netlifyIdentity.on("login", () => {
+      document.location.href = "/admin/";
     });
   }
 </script>
