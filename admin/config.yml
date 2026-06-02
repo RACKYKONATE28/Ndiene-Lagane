@@ -16,7 +16,7 @@ collections:
         label: "Modifier les Infos du Village"
         file: "index.html"
         fields:
-          - {label: "Alerte Urgente (Bandeau Rouge)", name: "texte-alerte", widget: "string"}
-          - {label: "Vie Municipale", name: "vie-municipale", widget: "text"}
-          - {label: "Agenda & Événements", name: "agenda-evenements", widget: "text"}
-          - {label: "Guide Pratique", name: "guide-pratique", widget: "text"}
+          - {label: "Alerte Urgente (Bandeau Rouge)", name: "texte-alerte", widget: "string", required: false}
+          - {label: "Vie Municipale", name: "vie-municipale", widget: "text", required: false}
+          - {label: "Agenda & Événements", name: "agenda-evenements", widget: "text", required: false}
+          - {label: "Guide Pratique", name: "guide-pratique", widget: "text", required: false}
