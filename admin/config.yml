@@ -1,0 +1,23 @@
+backend:
+  name: github
+  repo: RACKYKONATE28/ndiene-lagane
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "configuration"
+    label: "Contenu du Site"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "accueil"
+        label: "Modifier les Infos du Village"
+        file: "index.html"
+        fields:
+          - {label: "Alerte Urgente (Bandeau Rouge)", name: "texte-alerte", widget: "string"}
+          - {label: "Vie Municipale", name: "vie-municipale", widget: "text"}
+          - {label: "Agenda & Événements", name: "agenda-evenements", widget: "text"}
+          - {label: "Guide Pratique", name: "guide-pratique", widget: "text"}
