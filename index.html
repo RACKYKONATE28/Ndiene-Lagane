@@ -1,5 +1,8 @@
 ---
-texte-alerte: n,l:,;; ,
+texte-alerte: "YA PAS D4URGENCES"
+vie-municipale: "MAIRE THILASS"
+agenda-evenements: "MARCH2 HEBDO"
+guide-pratique: "SOYEZ BENI"
 ---
 <!DOCTYPE html>
 <html lang="fr">
@@ -289,3 +292,54 @@ texte-alerte: n,l:,;; ,
                     <label>Votre Numéro de Téléphone</label>
                     <input type="tel" name="telephone" placeholder="Ex: 77 123 45 67" required>
                 </div>
+                
+                <div class="form-group">
+                    <label>Votre Message / Réclamation</label>
+                    <textarea name="message" rows="4" placeholder="Écrivez votre message ici..." required></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Envoyer la demande</button>
+            </form>
+        </section>
+
+        <section class="qr-container">
+            <h2><i class="fas fa-qrcode" style="color: var(--dark);"></i> Accès Facile</h2>
+            <p style="font-size: 0.9rem; color: #64748b; text-align: center; margin-bottom: 1.5rem;">Scannez ce code pour partager le portail avec vos proches.</p>
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://meek-genie-ae204f.netlify.app" alt="QR Code">
+        </section>
+    </container>
+
+    <footer>
+        <p>&copy; 2026 Commune de Ndiene Lagane. Tous droits réservés.</p>
+        <a href="#" onclick="netlifyIdentity.open(); return false;" class="btn-admin">
+            <i class="fas fa-lock"></i> Accès Gérant
+        </a>
+    </footer>
+
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+         fetch(window.location.href)
+           .then(response => response.text())
+           .then(html => {
+              // Extraction des données Front Matter
+              const matchAlerte = html.match(/texte-alerte:\s*(.*?)(?=\s*(?:vie-municipale:|agenda-evenements:|guide-pratique:|---|html|$))/i);
+              const matchVie = html.match(/vie-municipale:\s*(.*?)(?=\s*(?:texte-alerte:|agenda-evenements:|guide-pratique:|---|html|$))/i);
+              const matchAgenda = html.match(/agenda-evenements:\s*(.*?)(?=\s*(?:texte-alerte:|vie-municipale:|guide-pratique:|---|html|$))/i);
+              const matchGuide = html.match(/guide-pratique:\s*(.*?)(?=\s*(?:texte-alerte:|vie-municipale:|agenda-evenements:|---|html|$))/i);
+
+              // Nettoyage des guillemets et injection dans le HTML
+              if(matchAlerte && matchAlerte[1]) document.getElementById('texte-alerte').innerText = matchAlerte[1].trim().replace(/^["']|["']$/g, '');
+              if(matchVie && matchVie[1]) document.getElementById('vie-municipale').innerText = matchVie[1].trim().replace(/^["']|["']$/g, '');
+              if(matchAgenda && matchAgenda[1]) document.getElementById('agenda-evenements').innerText = matchAgenda[1].trim().replace(/^["']|["']$/g, '');
+              if(matchGuide && matchGuide[1]) document.getElementById('guide-pratique').innerText = matchGuide[1].trim().replace(/^["']|["']$/g, '');
+           })
+           .catch(err => console.log("Erreur de synchronisation : ", err));
+      });
+
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", user => { if (user) { document.location.href = "/admin/"; } });
+        window.netlifyIdentity.on("login", () => { document.location.href = "/admin/"; });
+      }
+    </script>
+</body>
+</html>
