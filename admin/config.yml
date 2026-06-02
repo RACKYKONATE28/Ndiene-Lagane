@@ -1,6 +1,5 @@
 backend:
-  name: github
-  repo: RACKYKONATE28/ndiene-lagane
+  name: git-gateway
   branch: main
 
 media_folder: "images"
