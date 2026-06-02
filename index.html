@@ -1,8 +1,8 @@
 ---
-texte-alerte: pas d'urgence
-vie-municipale: a venir
-agenda-evenements: a venir
-guide-pratique: a venir
+texte-alerte: "YA PAS D4URGENCES"
+vie-municipale: "MAIRE THILASS"
+agenda-evenements: "MARCH2 HEBDO"
+guide-pratique: "SOYEZ BENI"
 ---
 <!DOCTYPE html>
 <html lang="fr">
@@ -321,13 +321,11 @@ guide-pratique: a venir
          fetch(window.location.href)
            .then(response => response.text())
            .then(html => {
-              // Extraction des données Front Matter
               const matchAlerte = html.match(/texte-alerte:\s*(.*?)(?=\s*(?:vie-municipale:|agenda-evenements:|guide-pratique:|---|html|$))/i);
               const matchVie = html.match(/vie-municipale:\s*(.*?)(?=\s*(?:texte-alerte:|agenda-evenements:|guide-pratique:|---|html|$))/i);
               const matchAgenda = html.match(/agenda-evenements:\s*(.*?)(?=\s*(?:texte-alerte:|vie-municipale:|guide-pratique:|---|html|$))/i);
               const matchGuide = html.match(/guide-pratique:\s*(.*?)(?=\s*(?:texte-alerte:|vie-municipale:|agenda-evenements:|---|html|$))/i);
 
-              // Nettoyage des guillemets et injection dans le HTML
               if(matchAlerte && matchAlerte[1]) document.getElementById('texte-alerte').innerText = matchAlerte[1].trim().replace(/^["']|["']$/g, '');
               if(matchVie && matchVie[1]) document.getElementById('vie-municipale').innerText = matchVie[1].trim().replace(/^["']|["']$/g, '');
               if(matchAgenda && matchAgenda[1]) document.getElementById('agenda-evenements').innerText = matchAgenda[1].trim().replace(/^["']|["']$/g, '');
