@@ -15,321 +15,85 @@ guide-pratique: "À venir "
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     
     <style>
+        /* Correction pour cacher le texte du Front Matter s'il apparaît */
+        body > hr, body > pre { display: none !important; }
+        
         :root { 
-            --primary: #0052cc; 
-            --primary-light: #e6f0ff;
-            --success: #10b981; 
-            --warning: #f59e0b; 
-            --danger: #ef4444; 
-            --dark: #0f172a; 
-            --light: #f8fafc;
-            --border: #e2e8f0; 
+            --primary: #0052cc; --primary-light: #e6f0ff; --success: #10b981; 
+            --warning: #f59e0b; --danger: #ef4444; --dark: #0f172a; 
+            --light: #f8fafc; --border: #e2e8f0; 
         }
-        
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            color: var(--dark); 
-            background: #f1f5f9; 
-            line-height: 1.6; 
-        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--dark); background: #f1f5f9; line-height: 1.6; }
 
-        .alert-banner { 
-            background: linear-gradient(135deg, var(--danger), #b91c1c); 
-            color: white; 
-            padding: 1rem; 
-            text-align: center; 
-            font-weight: 600; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            gap: 12px;
-            box-shadow: 0 4px 10px rgba(239, 68, 68, 0.2);
-        }
+        .alert-banner { background: linear-gradient(135deg, var(--danger), #b91c1c); color: white; padding: 1rem; text-align: center; font-weight: 600; }
 
-        header { 
-            background: linear-gradient(rgba(0, 40, 120, 0.85), rgba(0, 82, 204, 0.95)), url('https://images.unsplash.com/photo-1577083552431-6e5fd01aa342?auto=format&fit=crop&w=1200&q=80') no-repeat center/cover; 
-            color: white; 
-            padding: 4.5rem 1rem; 
-            text-align: center; 
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
+        header { background: linear-gradient(rgba(0, 40, 120, 0.9), rgba(0, 82, 204, 0.95)), url('https://images.unsplash.com/photo-1577083552431-6e5fd01aa342?auto=format&fit=crop&w=1200&q=80') no-repeat center/cover; color: white; padding: 3rem 1rem; text-align: center; }
         
-        .logo-area { 
-            font-size: 3.5rem; 
-            margin-bottom: 0.5rem;
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        header h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            margin-bottom: 0.5rem;
-        }
+        /* Style photo du Maire */
+        .photo-maire { margin-bottom: 1rem; }
+        .photo-maire img { width: 140px; height: 140px; border-radius: 50%; border: 4px solid white; object-fit: cover; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        .nom-maire { font-weight: 700; font-size: 1.2rem; margin-top: 10px; display: block; }
 
-        header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        container { 
-            max-width: 1200px; 
-            margin: 3rem auto; 
-            padding: 0 1.5rem; 
-            display: grid; 
-            grid-template-columns: 1fr; 
-            gap: 2.5rem; 
-        }
+        header h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+        container { max-width: 1200px; margin: 2rem auto; padding: 0 1.5rem; display: grid; grid-template-columns: 1fr; gap: 2rem; }
+        section { background: white; padding: 2rem; border-radius: 16px; border: 1px solid var(--border); }
+        .card { background: var(--light); padding: 1.5rem; border-radius: 12px; border-top: 4px solid var(--primary); margin-bottom: 1rem; }
+        .btn { display: block; padding: 1rem; border-radius: 8px; font-weight: 600; text-align: center; text-decoration: none; color: white; }
+        .btn-primary { background: var(--primary); }
+        .btn-whatsapp { background: #25D366; }
         
-        section { 
-            background: white; 
-            padding: 2.5rem; 
-            border-radius: 16px; 
-            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.05); 
-            border: 1px solid var(--border);
-        }
-        
-        section h2 { 
-            font-size: 1.5rem;
-            color: var(--dark);
-            padding-bottom: 0.75rem; 
-            margin-bottom: 2rem; 
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        section h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 4px;
-            background: var(--primary);
-            border-radius: 2px;
-        }
-        
-        .info-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-            gap: 1.5rem; 
-        }
-        
-        .card { 
-            background: var(--light); 
-            padding: 1.75rem; 
-            border-radius: 12px; 
-            border-top: 4px solid var(--primary);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 20px rgba(0,0,0,0.05);
-        }
-
-        .card h3 {
-            margin-bottom: 0.75rem;
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .form-group { margin-bottom: 1.5rem; }
-        label { display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem; color: #475569; }
-        input, textarea { 
-            width: 100%; 
-            padding: 0.75rem 1rem; 
-            border: 1px solid var(--border); 
-            border-radius: 8px; 
-            font-family: inherit;
-            transition: border-color 0.2s;
-        }
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(0, 82, 204, 0.1);
-        }
-        
-        .btn { 
-            display: inline-flex; 
-            align-items: center; 
-            justify-content: center; 
-            gap: 10px; 
-            padding: 0.85rem 1.5rem; 
-            border: none; 
-            border-radius: 8px; 
-            font-weight: 600; 
-            font-family: inherit;
-            cursor: pointer; 
-            text-decoration: none; 
-            transition: all 0.2s ease;
-            width: 100%; 
-        }
-        
-        .btn-primary { background: var(--primary); color: white; }
-        .btn-primary:hover { background: #0041a3; transform: translateY(-1px); }
-        
-        .btn-whatsapp { background: #25D366; color: white; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2); }
-        .btn-whatsapp:hover { background: #20ba5a; transform: translateY(-1px); }
-        
-        .qr-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        .qr-container img {
-            border: 1px solid var(--border);
-            padding: 10px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-        }
-
-        footer { 
-            text-align: center; 
-            padding: 3rem 1rem; 
-            background: var(--dark); 
-            color: #94a3b8; 
-            margin-top: 5rem; 
-        }
-        
-        footer p { font-size: 0.95rem; }
-
-        .btn-admin {
-            display: inline-block;
-            margin-top: 1.5rem;
-            color: var(--primary); 
-            text-decoration: none; 
-            font-size: 0.85rem; 
-            border: 1px solid var(--primary); 
-            padding: 6px 14px; 
-            border-radius: 6px; 
-            background: rgba(0, 82, 204, 0.05);
-            font-weight: 500;
-            transition: all 0.2s;
-        }
-        .btn-admin:hover {
-            background: var(--primary);
-            color: white;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-
-        @media (min-width: 768px) { 
-            container { grid-template-columns: 2fr 1fr; } 
-            .full-width { grid-column: 1 / -1; } 
-        }
+        @media (min-width: 768px) { container { grid-template-columns: 2fr 1fr; } }
     </style>
 </head>
 <body>
 
     <div class="alert-banner">
-        <i class="fas fa-exclamation-triangle"></i>
-        <span id="texte-alerte">Chargement de l'alerte...</span>
+        <i class="fas fa-exclamation-triangle"></i> <span id="texte-alerte">Chargement...</span>
     </div>
 
     <header>
-        <div class="logo-area"><i class="fas fa-landmark"></i></div>
+        <div class="photo-maire">
+            <img src="PHOTO DE THILASS.jpg" alt="Maire Thilass">
+            <span class="nom-maire">Maire Thilass</span>
+        </div>
         <h1>Portail Citoyen de Ndiene Lagane</h1>
-        <p>Votre mairie à portée de clic — Simple, Direct & Transparent</p>
     </header>
 
     <container>
-        <section class="full-width">
-            <h2><i class="fas fa-users" style="color: var(--primary);"></i> Espace Public : Ma Commune</h2>
-            <div class="info-grid">
-                <div class="card">
-                    <h3><i class="fas fa-user-tie" style="color: var(--primary);"></i> Vie Municipale</h3>
-                    <p id="vie-municipale">Chargement des informations...</p>
-                </div>
-                <div class="card" style="border-top-color: var(--success);">
-                    <h3><i class="fas fa-calendar-alt" style="color: var(--success);"></i> Agenda & Événements</h3>
-                    <p id="agenda-evenements">Chargement de l'agenda...</p>
-                </div>
-                <div class="card" style="border-top-color: var(--warning);">
-                    <h3><i class="fas fa-file-alt" style="color: var(--warning);"></i> Guide Pratique</h3>
-                    <p id="guide-pratique">Chargement du guide...</p>
-                </div>
-            </div>
+        <section>
+            <h2>Informations</h2>
+            <div class="card"><h3>Vie Municipale</h3><p id="vie-municipale">Chargement...</p></div>
+            <div class="card"><h3>Agenda</h3><p id="agenda-evenements">Chargement...</p></div>
+            <div class="card"><h3>Guide Pratique</h3><p id="guide-pratique">Chargement...</p></div>
         </section>
 
         <section>
-            <h2><i class="fas fa-comments" style="color: var(--success);"></i> Dialogue & Alertes</h2>
-            <div style="margin-bottom: 2rem;">
-                <a href="https://wa.me/221771234567" target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> Signaler par WhatsApp / Audio</a>
-            </div>
+            <h2>Dialogue</h2>
+            <a href="https://wa.me/221771234567" class="btn btn-whatsapp" style="margin-bottom:1rem;">WhatsApp</a>
             <form action="https://api.web3forms.com/submit" method="POST">
                 <input type="hidden" name="access_key" value="2b3d1c87-7435-4083-b3d3-60aeef6ee73f">
                 <input type="hidden" name="redirect" value="https://portail-ndiene.netlify.app">
-
-                <div class="form-group">
-                    <label>Nom & Prénom</label>
-                    <input type="text" name="nom" placeholder="Ex: Amadou Diop" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Votre Numéro de Téléphone</label>
-                    <input type="tel" name="telephone" placeholder="Ex: 77 123 45 67" required>
-                </div>
-                
-                <div class="form-group">
-                    <label>Votre Message / Réclamation</label>
-                    <textarea name="message" rows="4" placeholder="Écrivez votre message ici..." required></textarea>
-                </div>
-                
-                <button type="submit" class="btn btn-primary">Envoyer la demande</button>
+                <input type="text" name="nom" placeholder="Nom" required style="width:100%; padding:10px; margin-bottom:10px;">
+                <textarea name="message" placeholder="Message" required style="width:100%; padding:10px; margin-bottom:10px;"></textarea>
+                <button type="submit" class="btn btn-primary">Envoyer</button>
             </form>
         </section>
-
-        <section class="qr-container">
-            <h2><i class="fas fa-qrcode" style="color: var(--dark);"></i> Accès Facile</h2>
-            <p style="font-size: 0.9rem; color: #64748b; text-align: center; margin-bottom: 1.5rem;">Scannez ce code pour partager le portail avec vos proches.</p>
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://portail-ndiene.netlify.app" alt="QR Code">
-        </section>
     </container>
-
-    <footer>
-        <p>&copy; 2026 Commune de Ndiene Lagane. Tous droits réservés.</p>
-        <a href="#" onclick="netlifyIdentity.open(); return false;" class="btn-admin">
-            <i class="fas fa-lock"></i> Accès Gérant
-        </a>
-    </footer>
 
     <script>
       window.addEventListener('DOMContentLoaded', () => {
          fetch(window.location.href)
-           .then(response => response.text())
+           .then(r => r.text())
            .then(html => {
-              const matchAlerte = html.match(/texte-alerte:\s*(.*?)(?=\s*(?:vie-municipale:|agenda-evenements:|guide-pratique:|---|html|$))/i);
-              const matchVie = html.match(/vie-municipale:\s*(.*?)(?=\s*(?:texte-alerte:|agenda-evenements:|guide-pratique:|---|html|$))/i);
-              const matchAgenda = html.match(/agenda-evenements:\s*(.*?)(?=\s*(?:texte-alerte:|vie-municipale:|guide-pratique:|---|html|$))/i);
-              const matchGuide = html.match(/guide-pratique:\s*(.*?)(?=\s*(?:texte-alerte:|vie-municipale:|agenda-evenements:|---|html|$))/i);
-
-              if(matchAlerte && matchAlerte[1]) document.getElementById('texte-alerte').innerText = matchAlerte[1].trim().replace(/^["']|["']$/g, '');
-              if(matchVie && matchVie[1]) document.getElementById('vie-municipale').innerText = matchVie[1].trim().replace(/^["']|["']$/g, '');
-              if(matchAgenda && matchAgenda[1]) document.getElementById('agenda-evenements').innerText = matchAgenda[1].trim().replace(/^["']|["']$/g, '');
-              if(matchGuide && matchGuide[1]) document.getElementById('guide-pratique').innerText = matchGuide[1].trim().replace(/^["']|["']$/g, '');
-           })
-           .catch(err => console.log("Erreur de synchronisation : ", err));
+              const ids = ['texte-alerte', 'vie-municipale', 'agenda-evenements', 'guide-pratique'];
+              ids.forEach(id => {
+                const regex = new RegExp(`${id}:\\s*"(.*?)"`, 'i');
+                const match = html.match(regex);
+                if(match) document.getElementById(id).innerText = match[1];
+              });
+           });
       });
-
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", user => { if (user) { document.location.href = "/admin/"; } });
-        window.netlifyIdentity.on("login", () => { document.location.href = "/admin/"; });
-      }
     </script>
 </body>
 </html>
