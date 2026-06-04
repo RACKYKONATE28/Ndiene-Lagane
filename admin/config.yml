@@ -1,22 +1,12 @@
 backend:
   name: git-gateway
   branch: main
-
-media_folder: "images"
-public_folder: "/images"
-
+media_folder: "PHOTO DE THILASS.jpg"
 collections:
-  - name: "configuration"
-    label: "Contenu du Site"
-    delete: false
-    editor:
-      preview: false
-    files:
-      - name: "accueil"
-        label: "Modifier les Infos du Village"
-        file: "index.html"
-        fields:
-          - {label: "Alerte Urgente (Bandeau Rouge)", name: "texte-alerte", widget: "string", required: false}
-          - {label: "Vie Municipale", name: "vie-municipale", widget: "text", required: false}
-          - {label: "Agenda & Événements", name: "agenda-evenements", widget: "text", required: false}
-          - {label: "Guide Pratique", name: "guide-pratique", widget: "text", required: false}
+  - name: "info"
+    label: "Informations"
+    folder: "content"
+    create: true
+    fields:
+      - {label: "Titre", name: "title", widget: "string"}
+      - {label: "Contenu", name: "body", widget: "markdown"}
